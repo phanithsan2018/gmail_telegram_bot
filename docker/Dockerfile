@@ -28,9 +28,13 @@ COPY ../src /var/www/html
 # Install Laravel dependencies
 RUN composer install
 
-# Change ownership and permissions for Laravel
+# Set the correct ownership and permissions for Laravel directories
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+    && chmod -R 775 /var/www/html/storage \
+    && chmod -R 775 /var/www/html/bootstrap/cache \
+    && touch /var/www/html/storage/logs/laravel.log \
+    && chown www-data:www-data /var/www/html/storage/logs/laravel.log \
+    && chmod 664 /var/www/html/storage/logs/laravel.log
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
