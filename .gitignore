@@ -17,6 +17,8 @@
 # Docker
 docker/certs
 docker/*.env
+docker/docker-compose.yml
+docker/docker-compose.prod.yml
 
 # General
 .DS_Store
